@@ -1,13 +1,22 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login Page</title>
     <style>
         body {
             font-family: Arial, sans-serif;
             background-color: #f2f2f2;
             text-align: center;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
         }
+
         .login-container {
             background-color: #fff;
             border-radius: 8px;
@@ -15,15 +24,19 @@
             max-width: 400px;
             margin: 0 auto;
             padding: 20px;
+            text-align: center;
         }
+
         h2 {
             color: #333;
         }
+
         label {
             display: block;
             text-align: left;
             margin-bottom: 8px;
         }
+
         input[type="text"],
         input[type="password"] {
             width: 100%;
@@ -33,6 +46,7 @@
             border: 1px solid #ccc;
             border-radius: 4px;
         }
+
         input[type="submit"] {
             background-color: #333;
             color: #fff;
@@ -42,23 +56,94 @@
             cursor: pointer;
             font-weight: bold;
         }
+
         input[type="submit"]:hover {
+            background-color: #555;
+        }
+
+        /* Additional styles for the landing page */
+        #landing-page {
+            display: none;
+            margin-top: 20px;
+        }
+
+        .landing-container {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 20px;
+            text-align: center;
+        }
+
+        #logout {
+            background-color: #333;
+            color: #fff;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 10px;
+        }
+
+        #logout:hover {
             background-color: #555;
         }
     </style>
 </head>
 <body>
     <div class="login-container">
-        <h2>User Authentication</h2>
-        <form action="login_process.php" method="post">
+        <h2>Login</h2>
+        <form id="login-form">
             <label for="username">Username:</label>
-            <input type="text" id="username" name="username" required><br><br>
+            <input type="text" id="username" placeholder="Username" required><br><br>
 
             <label for="password">Password:</label>
-            <input type="password" id="password" name="password" required><br><br>
+            <input type="password" id="password" placeholder="Password" required><br><br>
 
             <input type="submit" value="Login">
         </form>
+        <p class="error-message" id="error-message"></p>
     </div>
+
+    <div id="landing-page">
+        <div class="landing-container">
+            <h2>Welcome to the Landing Page</h2>
+            <p>This is the content of your landing page.</p>
+            <a href="#" id="logout">Logout</a>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById("login-form").addEventListener("submit", function (e) {
+            e.preventDefault();
+
+            // Replace this part with your actual login functionality
+            const username = document.getElementById("username").value;
+            const password = document.getElementById("password").value;
+
+            // Example validation (replace with actual validation logic)
+            if (username === "admin" && password === "Ecssupport09") {
+                // Successful login, show the landing page and hide the login page
+                document.getElementById("login-container").style.display = "none";
+                document.getElementById("landing-page").style.display = "block";
+            } else {
+                document.getElementById("error-message").textContent = "Invalid username or password.";
+            }
+        });
+
+        // Logout functionality (return to login page)
+        document.getElementById("logout").addEventListener("click", function (e) {
+            e.preventDefault();
+
+            // Hide the landing page and show the login page again
+            document.getElementById("landing-page").style.display = "none";
+            document.getElementById("login-container").style.display = "block";
+        });
+    </script>
 </body>
 </html>
